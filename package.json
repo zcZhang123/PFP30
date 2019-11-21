@@ -1,0 +1,25 @@
+{
+  "name": "pfp30",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcZhang123/PFP30.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zcZhang123/PFP30/issues"
+  },
+  "homepage": "https://github.com/zcZhang123/PFP30#readme",
+  "dependencies": {
+    "jcc_rpc": "^0.1.3",
+    "jingtum-lib": "^2.3.0",
+    "swtc-keypairs": "^0.11.19",
+    "swtc-lib": "^1.6.36"
+  }
+}
