@@ -44,28 +44,6 @@ const testDefaultWallet = {
 // 测试swtc_lib提交支付
 var SWTCRemote = slib.Remote;
 // ed25519发起转账
-// var SRemote = new SWTCRemote({
-//   server: "ws://47.92.4.236:5020",
-//   issuer: "jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS"
-// });
-// SRemote
-//   .connectPromise()
-//   .then(async () => {
-//     let tx = SRemote.buildPaymentTx({
-//       account: testEd25519Wallet.address,
-//       to: testDefaultWallet.address,
-//       amount: SRemote.makeAmount(0.1)
-//     });
-//     let response = await tx.submitPromise(
-//       testEd25519Wallet.secret,
-//       "测试"
-//     );
-//     console.log(response);
-//     SRemote.disconnect();
-//   })
-//   .catch(console.error);
-
-// 向ed25519转账
 var SRemote = new SWTCRemote({
   server: "ws://47.92.4.236:5020",
   issuer: "jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS"
@@ -74,18 +52,40 @@ SRemote
   .connectPromise()
   .then(async () => {
     let tx = SRemote.buildPaymentTx({
-      account: testDefaultWallet.address,
-      to: testEd25519Wallet.address,
+      account: testEd25519Wallet.address,
+      to: testDefaultWallet.address,
       amount: SRemote.makeAmount(0.1)
     });
     let response = await tx.submitPromise(
-      testDefaultWallet.secret,
+      testEd25519Wallet.secret,
       "测试"
     );
     console.log(response);
     SRemote.disconnect();
   })
   .catch(console.error);
+
+// 向ed25519转账
+// var SRemote = new SWTCRemote({
+//   server: "ws://47.92.4.236:5020",
+//   issuer: "jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS"
+// });
+// SRemote
+//   .connectPromise()
+//   .then(async () => {
+//     let tx = SRemote.buildPaymentTx({
+//       account: testDefaultWallet.address,
+//       to: testEd25519Wallet.address,
+//       amount: SRemote.makeAmount(0.1)
+//     });
+//     let response = await tx.submitPromise(
+//       testDefaultWallet.secret,
+//       "测试"
+//     );
+//     console.log(response);
+//     SRemote.disconnect();
+//   })
+//   .catch(console.error);
 
 // 创建挂单
 // var jlib = require('swtc-lib');
