@@ -16,6 +16,16 @@
 | skywell     | jt_sendTransaction |                                        转账失败 ，不识别ed25519编码的密钥（Bad version for: sEdTJSpen5J8ZA7H4cVGDF6oSSLLW2Y expected: Family seed. ）  </br>  |
 
 注：</br>
+jingtum-lib无法识别ed25519编码的密钥、地址</br>
+swtc-lib识别ed25519编码的密钥、地址</br>
+skywell无法识别添加的jingtum-jfqiMxoT228vp3dMrXKnJXo6V9iYEx94pt.cfg文件</br>
+
+jingtum-lib以本地签名方式转账无法识别密钥，注释验证密钥代码后
+>err: sign error: Error: Unknown datatype. (SigningPubKey)
+
+jingtum-lib不以本地签名的方式转账，注释验证密钥代码后
+>err: Secret does not match account.
+
 swtc-lib挂单、转账时都会出现message must be array of octets报错</br>
 在swtc-keypairs/src/index中的ed25519的signTx()方法中注释以下代码，
 > assert(Array.isArray(message), "message must be array of octets")</br>
@@ -26,3 +36,4 @@ skywell无法识别ed25519编码的密钥</br>
 jt_sendRawTransaction发起原始交易后出现：</br>
 >skywell.node: http: panic serving 127.0.0.1:55494: interface conversion: interface {} is nil, not map[string]interface {}
 
+目前验证结果：井通不支持ed25519编码的密钥
