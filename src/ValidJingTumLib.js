@@ -41,20 +41,51 @@ const testWallet = { address: 'jfyiDN3XrbdPuAzWSwnx49DNsdkX6jqz12', secret: 'spm
 const ed25519Wallet = { address: 'jHGFiq39aGd4HoQRC2ThuFLomvZ4GSKoNQ', secret: 'sEdTEDG1niRHFdKicouTDkVWqf8YRsx' }
 
 
-// 测试jingtum-lib提交支付
-var Remote = jtlib.Remote;
-var remote = new Remote({
-    server: 'wss://s.jingtum.com:5020', local_sign: true
+// 测试jingtum-lib使用本地签名提交支付
+// var Remote = jtlib.Remote;
+// var remote = new Remote({
+//     server: 'wss://s.jingtum.com:5020', local_sign: true
+// });
+// remote.connect(function (err, result) {
+//     if (err) {
+//         return console.log('err:', err);
+//     }
+//     var tx = remote.buildPaymentTx({
+//         account: ed25519Wallet.address,
+//         to: testWallet.address,
+//         amount: {
+//             "value": 1,
+//             "currency": "SWT",
+//             "issuer": ""
+//         }
+//     });
+//     tx.setSecret(ed25519Wallet.secret);
+//     tx.addMemo('测试 ed25519编码钱包使用jingtum_lib转账');//可选
+//     tx.submit(function (err, result) {
+//         if (err) { console.log('err:', err); remote.disconnect(); }
+//         else if (result) {
+//             console.log('----------------------------------------------------------------------------------------------------------------')
+//             console.log('test jingtum-lib :', result);
+//             console.log('\n')
+//             remote.disconnect()
+//         }
+//     });
+// });
+
+// 测试jingtum-lib不使用本地签名提交支付
+var JRemote = jtlib.Remote;
+var jRemote = new JRemote({
+    server: 'wss://s.jingtum.com:5020', local_sign: false
 });
-remote.connect(function (err, result) {
+jRemote.connect(function (err, result) {
     if (err) {
         return console.log('err:', err);
     }
-    var tx = remote.buildPaymentTx({
+    var tx = jRemote.buildPaymentTx({
         account: ed25519Wallet.address,
         to: testWallet.address,
         amount: {
-            "value": 35,
+            "value": 1,
             "currency": "SWT",
             "issuer": ""
         }
@@ -62,12 +93,12 @@ remote.connect(function (err, result) {
     tx.setSecret(ed25519Wallet.secret);
     tx.addMemo('测试 ed25519编码钱包使用jingtum_lib转账');//可选
     tx.submit(function (err, result) {
-        if (err) { console.log('err:', err); remote.disconnect(); }
+        if (err) { console.log('err:', err); jRemote.disconnect(); }
         else if (result) {
             console.log('----------------------------------------------------------------------------------------------------------------')
             console.log('test jingtum-lib :', result);
             console.log('\n')
-            remote.disconnect()
+            jRemote.disconnect()
         }
     });
 });
