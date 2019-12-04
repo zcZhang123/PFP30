@@ -20,7 +20,7 @@ jingtum-lib无法识别ed25519编码的密钥、地址</br>
 swtc-lib识别ed25519编码的密钥、地址</br>
 skywell无法识别添加的jingtum-jfqiMxoT228vp3dMrXKnJXo6V9iYEx94pt.cfg文件</br>
 
-![Image text](https://github.com/zcZhang123/PFP30/blob/master/img/isLocalSign.png)
+![Image text](https://github.com/zcZhang123/PFP30/raw/master/img/isLocalSign.png)
 
 jingtum-lib以本地签名方式转账无法识别密钥，注释验证密钥代码后
 >err: sign error: Error: Unknown datatype. (SigningPubKey)
